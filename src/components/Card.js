@@ -29,17 +29,15 @@ class Card extends Component {
             alignItems: 'right',
             marginTop: '70px',
             float: 'center',
-            alignItems: 'center',
-            marginLeft: '37px',
-            color: '#fff'
+            color: '#fff',
+            textAlign: 'center'
         }
         const textStyleP = {
             color: "#fff",
             alignItems: 'right',
             marginTop: '0px',
             float: 'center',
-            alignItems: 'center',
-            marginLeft: '75px'
+            textAlign: 'center'
         }
         return (
             <div className = "button" style = { buttonStyle } onClick={()=>{this.setState({clicked: !this.state.clicked});}}>

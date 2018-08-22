@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Card from './Card';
-import { Button } from 'semantic-ui-react';
+// import { Button } from 'semantic-ui-react';
 
 
 class PlinthContainer extends React.Component {
     state = {
-        color: "#ffffff",
+        colors: [],
+        selected: []
     }
+
   render() {
+
     let listOfItems = ["These", "are", "Different", "plinths", "!!!!", "maybe", "some", "more", "just", "to ", "test", "whether", "it", "works"];
     
     const CentralDiv = {
