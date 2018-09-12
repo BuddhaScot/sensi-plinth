@@ -5,9 +5,12 @@
   "dependencies": {
     "ajv": "^6.0.0",
     "npm-install-peers": "^1.2.1",
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-color": "^2.14.1",
     "react-dom": "^16.4.2",
+    "react-draggable": "^3.0.5",
+    "react-overlay": "^0.1.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.4.0-alpha.1",
     "react-scripts": "1.1.4",
