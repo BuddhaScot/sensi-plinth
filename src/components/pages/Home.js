@@ -21,8 +21,14 @@ export default class Home extends Component {
     this.state = { 
       activeItem: 'home',      
      };
-    getPlinthData(true,-1);
-    
+
+    getPlinthData(true,-1).then((data) => {
+      console.log(data);
+      // Set plinth data from 'data' variable which was returned from the server
+    }).catch((err) => {
+      console.log("An error occured: " + err.toString());
+    })
+     
 
   }
 
