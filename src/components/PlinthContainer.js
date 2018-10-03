@@ -4,7 +4,6 @@ import Card from './Card';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { SwatchesPicker } from 'react-color';
 import ErrorMessage  from './ErrorMessage';
-import SensiLabS from './SensiLabS';
 
 class PlinthContainer extends React.Component {
     state = {
@@ -48,7 +47,7 @@ class PlinthContainer extends React.Component {
     validate = (data) => {
         const errors = {};
         if (!data.ID) errors.ID = "ID cannot be blank";
-        if (! data.URL) errors.URL = "URL cannot be blank "
+        if (! data.URL) errors.URL = "URL cannot be blank ";
         return errors;
     }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { SwatchesPicker } from 'react-color';
-import { Modal } from 'semantic-ui-react';
-
+import { Modal, ModalDescription, Button, Header } from 'semantic-ui-react';
+import '../App.css';
 
 
 
@@ -33,18 +33,16 @@ class Card extends Component {
             this.props.changeAllPlinth(colorChange.hex);
         }
     }
- 
-
 
     render() {
         const buttonStyle = {
             justifyContent: 'center',
             alignItems: 'center',
-            width:  '200px',
-            height: '200px',
+            width:  '180px',
+            height: '180px',
             border: "solid 2px " + (this.state.clicked ? "red" : "green"),
             background: this.state.color,
-            borderRadius: "50% 50%",
+            borderRadius: "100% 100%",
             zIndex: "1",
         }
         
@@ -70,13 +68,16 @@ class Card extends Component {
                 {
                 this.state.clicked?
                 //CHANGE THIS OPEN METHOD IF YOU WANT TO MAKE IT STOP BEING SHIT
-                    <Modal size={'tiny'} open={this.state.clicked} style={{alignitems:'center'}}>
-                        <Modal.Header>COLORSSSSS</Modal.Header>
-                        <Modal.Content alignitems='center'>
-                            <div style={{justifyContent:'center', height:'100%', width:'100%',marginLeft:'auto', marginRight:'auto', fill: "#fff"}}><SwatchesPicker onChangeComplete={this.handleChange} style={{alignItems: 'center', marginLeft:'auto', marginRight: 'auto', width:'80%'}}/></div>
-                        {
-                            //<div style={{justifyContent:'center', height:'100%', width:'100%',marginLeft:'auto', marginRight:'auto', fill: "#000"}}/>
-                        }
+                    <Modal size={"large"} open={this.state.clicked} style={{alignitems:'center'}}>
+                        <Modal.Header>Choose a color, any color.</Modal.Header>
+                        <Modal.Content image alignitems='center'>
+                            <SwatchesPicker onChangeComplete={this.handleChange} style={{alignItems: 'center', marginLeft:'auto', marginRight: 'auto', width:'80%'}}/>
+                            <ModalDescription>
+                                <Header>Plinth Details</Header>
+                                <div style={{width:""}}><Button primary style={{justifyContent:"center", marginLeft:"30%", marginRight:"30%"}}>Edit Plinth Details</Button></div>
+                                <p></p>
+                                <div><Button primary alignItems="center" style={{justifyContent:'center',marginLeft:"30%", marginRight:"30%"}}>Delete</Button></div>
+                            </ModalDescription>
                         </Modal.Content>
                 </Modal> : null
                 }
@@ -84,8 +85,7 @@ class Card extends Component {
         )
     }
 }
-//                            <div style={{justifyContent:'center', height:'100%', width:'100%',marginLeft:'auto', marginRight:'auto', fill: "#fff"}}><SwatchesPicker onChangeComplete={this.handleChange} style={{alignItems: 'center', marginLeft:'auto', marginRight: 'auto'}}/></div>
 
-
+//<div style={{justifyContent:'center', height:'100%', width:'10%',marginLeft:'auto', marginRight:'auto', fill: "#fff"}}>
 export default Card;
 

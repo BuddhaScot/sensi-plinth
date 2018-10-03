@@ -10,10 +10,8 @@ class DraggableComponent extends Component {
     }
     render(){
       return(
-        <Draggable defaultPosition={this.state.position} onDrag={console.log("THIS")}>
-            <div style={{fill: '#000'}}>
-            <h1> {this.props.plinthID} </h1> 
-            </div>  
+        <Draggable color='#000' defaultPosition={this.state.position} onDrag={console.log("THIS")}>
+              <div style={{backgroundColor:'#e45', height: '5%', width: '5%', alignitems: 'center'}}><h1 style={{alignSelf: 'center'}}>{this.props.plinthID}</h1></div> 
         </Draggable>
       )
     }
