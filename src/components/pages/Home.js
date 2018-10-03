@@ -3,6 +3,8 @@ import PlinthContainer from '../PlinthContainer';
 import { Link } from 'react-router-dom';
 import ModalExample from '../ModalExample';
 import { Menu, Button, Segment } from 'semantic-ui-react';
+import {getPlinthData} from '../../server'
+
 
 const test = {
   backgroundColor: "red",
@@ -17,9 +19,13 @@ export default class Home extends Component {
   constructor(){
     super();
     this.state = { 
-      activeItem: 'home',
-    };
+      activeItem: 'home',      
+     };
+    getPlinthData(true,-1);
+    
+
   }
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
  
