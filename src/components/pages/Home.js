@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import ModalExample from '../ModalExample';
 import { Menu, Button, Segment } from 'semantic-ui-react';
 
-
-
 const test = {
   backgroundColor: "red",
   height: '100%',
