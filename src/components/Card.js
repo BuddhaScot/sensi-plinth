@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { SwatchesPicker } from 'react-color';
 import { Modal, ModalDescription, Button, Header } from 'semantic-ui-react';
 import '../App.css';
+import { changeLight } from '../server';
 
 
 
@@ -18,10 +19,24 @@ class Card extends Component {
         return [parseInt(hexValue[1] + hexValue[2], 16), parseInt(hexValue[3] + hexValue[4], 16), parseInt(hexValue[5] + hexValue[6], 16)];
     }
 
-    setPlinthColour(colour, url="http://"+this.props.cardTitle.toString()+".sensilab.monash.edu/light?r=") {
+    setPlinthColour(colour) {
         const rgbColour = this.convertHexToRGB(colour);
-        console.log(rgbColour);
-        fetch(url + rgbColour[0].toString() + '&g=' + rgbColour[1].toString() + '&b=' + rgbColour[2].toString()).catch(console.log("oops"));
+        const rgbVal = {
+            r: rgbColour[0],
+            g: rgbColour[1],
+            b: rgbColour[2],
+            w: 0,
+        }
+        const plinth_id = this.props.cardTitle;
+        console.log("Plinth: ", plinth_id, " updating Colour")
+        changeLight(plinth_id, rgbVal).then((data) => {
+            console.log(data);
+        }).catch((error) => {
+            console.log("uh oh: ", error);
+        })
+        //console.log(rgbColour);
+        //fetch(url + rgbColour[0].toString() + '&g=' + rgbColour[1].toString() + '&b=' + rgbColour[2].toString()).catch(console.log("oops"));
+
     }
 
     handleChange = (colorChange, event) => {
@@ -47,7 +62,7 @@ class Card extends Component {
         }
         
         const textStyle = {
-            alignItems: 'right',
+            alignitems: 'right',
             marginTop: '70px',
             float: 'center',
             color: '#fff',
@@ -63,7 +78,7 @@ class Card extends Component {
         
         return (
             <div className = "button" style = { buttonStyle } onClick={()=>{this.setState({clicked: !this.state.clicked});}}>
-                <h1 style = { textStyle }>{this.props.cardTitle}</h1>
+                <h1 style = { textStyle }>{"Plinth " + this.props.cardTitle}</h1>
                 <p style= { textStyleP }>{this.props.cardContent}</p>
                 {
                 this.state.clicked?
@@ -76,10 +91,11 @@ class Card extends Component {
                                 <Header>Plinth Details</Header>
                                 <div style={{width:""}}><Button primary style={{justifyContent:"center", marginLeft:"30%", marginRight:"30%"}}>Edit Plinth Details</Button></div>
                                 <p></p>
-                                <div><Button primary alignItems="center" style={{justifyContent:'center',marginLeft:"30%", marginRight:"30%"}}>Delete</Button></div>
+                                <div><Button primary alignItems="center" style={{justifyContent:'center',marginLeft:"30%", marginRight:"30%"}} onClick={() => {this.props.onDelete(this.props.cardTitle)}}>Delete</Button></div>
                             </ModalDescription>
                         </Modal.Content>
-                </Modal> : null
+                    </Modal> 
+                    : null
                 }
             </div>
         )

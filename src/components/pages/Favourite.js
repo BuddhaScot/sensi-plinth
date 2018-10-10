@@ -11,13 +11,17 @@ class Favourite extends Component{
     //}
     this.state = {
       //plinths: getPlinths();
-      plinths: this.props.plinthObjects
-      //plinths: [1,2,3,4,5,6,7,8,9],
-      //position: {x:Math.random() * 1000 , y:Math.random() * 1000}
+      //plinths: this.props.plinthObjects,
+      config: "current",
+      plinths: [1,2,3,4,5,6,7,8,9],
+      position: {x:Math.random() * 1000 , y:Math.random() * 1000}
     }
   }
+
+  
   render() {
     const listofPlinths = this.state.plinths;
+    console.log("HERE", this.state.config)
     return(
       <span>
       {

@@ -4,19 +4,36 @@ import Card from './Card';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { SwatchesPicker } from 'react-color';
 import ErrorMessage  from './ErrorMessage';
+import {getPlinthData} from '../server';
 
 class PlinthContainer extends React.Component {
-    state = {
-        colors: "#003366",
-        listOfPlinths: [{ID: "1", Item:"These"}, {ID:"2",Item:"are"},{ID:"3",Item:"Different"},{ID:"4",Item:"plinths"}, {ID: "5",Item:"!!!!"}, {ID:"6",Item:"maybe"}, {ID:"7",Item:"some"}, {ID:"8",Item:"more"},{ID:"9",Item:"just"}],
-        data: {
-            ID: "",
-            URL: "",
-            color: "#000"
-        },
-        errors: {}
-
-    }
+    constructor(props) { 
+        super(props);
+        this.state = {
+            colors: "#003366",
+            listOfPlinths: [],
+            //listOfPlinths: [{ID: "1", Item:"These"}, {ID:"2",Item:"are"},{ID:"3",Item:"Different"},{ID:"4",Item:"plinths"}, {ID: "5",Item:"!!!!"}, {ID:"6",Item:"maybe"}, {ID:"7",Item:"some"}, {ID:"8",Item:"more"},{ID:"9",Item:"just"}],
+            data: {
+                ID: "",
+                URL: "",
+                color: "#000"
+            },
+            errors: {}
+       }
+        getPlinthData(true,-1).then((data) => {
+        let test = data[0];
+        this.setState(
+          {
+            listOfPlinths: test,
+          }
+        )
+        console.log("CORRECT: ",this.state.listOfPlinths);
+        // Set plinth data from 'data' variable which was returned from the server
+      }).catch((err) => {
+        console.log("An error occured: " + err.toString());
+      })
+       console.log("this", this.state.listOfPlinths);
+}
 
     changeAllPlinth = (color, event) => {
         console.log(color)
@@ -31,6 +48,19 @@ class PlinthContainer extends React.Component {
 
     onColorChange = (color) => {
         //do something here
+    }
+
+    onDelete = (ID) => {
+        console.log("THIS GETS CALLED", ID)
+        for (let i=0; i < this.state.listOfPlinths.length; i++){
+            if (this.state.listOfPlinths[i].ID === ID){
+                this.setState = {
+             //listOfPlinths = listOfPlinths[0..i].concat(listOfPlinths[i+1:])
+                    listOfPlinths: this.state.listOfPlinths.splice(i, 1),
+                }
+                console.log("H:", this.state.listOfPlinths)
+            }
+        }
     }
 
     onSubmit = () => {
@@ -91,7 +121,7 @@ class PlinthContainer extends React.Component {
                             name = "ID"
                             value = {data.ID}
                             onChange={this.onChange}
-                            placeholder='plinth 5'/>    
+                            placeholder='Plinth 5'/>    
                         {
                             errors.ID && <ErrorMessage text={errors.ID}/>
                         }
@@ -119,7 +149,7 @@ class PlinthContainer extends React.Component {
             {
             listOfItems.map((item, index) => {
                 console.log(item);
-              return <span style={MenuItem}><Card cardTitle={"plinth" + (item.ID)} cardContent={item.Item} key={index} color={this.state.colors}/></span>;})
+              return <span style={MenuItem}><Card cardTitle={(item.plinth_id)} cardContent={item.Item} key={index} color={this.state.colors} onDelete={this.onDelete}/></span>;})
               //return <Button style={MenuItem}><Card cardTitle={"Plinth " + (index+1)} cardContent={item} key={index}/></Button>;})
             }
         </div>
