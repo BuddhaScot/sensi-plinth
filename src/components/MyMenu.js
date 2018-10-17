@@ -21,9 +21,9 @@ export default class MyMenu extends Component {
     const { activeItem } = this.state;
     return (
       <Menu tabular>
-        <Menu.Item name='home' active={activeItem === 'home'} style={activeItem !== 'home' ? {color: '#fff'} : {color: '#000'}} onClick={this.handleItemClick}><Link to="/">Home</Link></Menu.Item>
-        <Menu.Item name='favourites' active={activeItem === 'favourites'} style={activeItem !== 'favourites' ? {color: '#fff'} : {color: '#000'}} onClick={this.handleItemClick}><Link to="/Favourite">Favourite</Link></Menu.Item>
-        <Menu.Item name='configurations' active={activeItem === 'configurations'} style={activeItem !== 'configurations' ? {color: '#000'} : {color: '#f45'}} onClick={this.handleItemClick}><Link to="/Configurations">Configurations</Link></Menu.Item>
+        <Link to="/"><Menu.Item name='home' active={activeItem === 'home'} style={activeItem !== 'home' ? {color: '#fff'} : {color: '#000'}} onClick={this.handleItemClick}>Home</Menu.Item></Link>
+        <Link to="/Favourite"><Menu.Item name='favourites' active={activeItem === 'favourites'} style={activeItem !== 'favourites' ? {color: '#fff'} : {color: '#000'}} onClick={this.handleItemClick}>Configurations</Menu.Item></Link>
+        <Link to="/Configurations"><Menu.Item name='configurations' active={activeItem === 'configurations'} style={activeItem !== 'configurations' ? {color: '#fff'} : {color: '#000'}} onClick={this.handleItemClick}>Favourites</Menu.Item></Link>
       </Menu>
     )
   }

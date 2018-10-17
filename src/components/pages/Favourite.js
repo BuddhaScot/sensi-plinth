@@ -3,6 +3,8 @@ import DraggableComponent from '../DraggableComponent';
 import { getConfig } from '../../server';
 import {Segment} from 'semantic-ui-react';
 import MyMenu from '../MyMenu';
+import image from '../../floorPlan.png';
+
 
 
 class Favourite extends Component{
@@ -36,9 +38,9 @@ class Favourite extends Component{
     const title_text = "Edit Configuration"
     return(
       <Segment inverted style={{minHeight: "100%", marginTop:"0px", marginBottom:"0px"}}>
-      <h1>{title_text}</h1>  
+      <h1 style={{textAlign: "center", marginLeft: "auto", marginRight: "auto"}}>{title_text}</h1>  
       <MyMenu activeItem={"favourites"}/>
-      <div style={{backgroundColor:"#fff", backgroundImage:"../../floorPlan.png", width: "1000px", height: '800px', paddingLeft:'auto', paddingRight:'auto', justifyContent: 'center'}}>
+      <div style={{backgroundColor:"#fff", backgroundImage: image, width: "1000px", height: '800px', marginLeft:'auto', marginRight:'auto', justifyContent: 'center', borderRadius:'0.5%'}}>
         {
           listofPlinths.map((Item, index) => {
             console.log(Item)

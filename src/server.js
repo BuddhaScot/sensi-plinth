@@ -1,4 +1,4 @@
-const BASE_URL = "http://d6e832f3.ngrok.io";
+const BASE_URL = "http://794295be.ngrok.io";
 
 export class RGBColour {
     constructor(r, g, b) {
