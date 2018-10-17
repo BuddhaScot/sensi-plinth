@@ -1,4 +1,4 @@
-const BASE_URL = "http://794295be.ngrok.io";
+const BASE_URL = "http://87341e6c.ngrok.io";
 
 export class RGBColour {
     constructor(r, g, b) {
@@ -10,7 +10,7 @@ export class RGBColour {
 
 export class HexColour {
     constructor(hexString) {
-        if (hexString.charAt(0) == '#') {
+        if (hexString.charAt(0) === '#') {
             this.hex = hexString.substring(1, 7);
         } else {
             this.hex = hexString;
@@ -23,7 +23,7 @@ export class HexColour {
 
 export function componentToHex(c) {
     var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+    return hex.length === 1 ? "0" + hex : hex;
 }
 
 export function rgbToHex(r, g, b) {
@@ -34,7 +34,7 @@ export function sendServerRequest(requestString) {
     return fetch(BASE_URL + requestString).then((data) => data.json()).then((response) => {
         return [response, false];
     }).catch((err) => {
-        throw [returnError(err), true];
+        throw new Error(returnError(err));
     })
 }
 

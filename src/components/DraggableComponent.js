@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Draggable, {position} from 'react-draggable';
+import Draggable from 'react-draggable';
 import { rgbToHex } from '../server';
 
 class DraggableComponent extends Component {

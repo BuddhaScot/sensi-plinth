@@ -12,10 +12,10 @@ class Favourite extends Component{
     super(props)
     const { data } = this.props.location
 
-    let JSON_FAKE = undefined;
+    // let JSON_FAKE = undefined;
 
     this.state = {
-      config: data == undefined ? "current" : data,
+      config: data === undefined ? "current" : data,
       //plinths: [1,2,3,4,5,6,7,8,9],
       plinths: [],
       soemthingToTest: {x:100, y:100},

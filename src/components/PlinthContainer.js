@@ -57,7 +57,7 @@ class PlinthContainer extends React.Component {
     onDelete = (ID) => {
         console.log("THIS GETS CALLED", ID)
         deletePlinth(ID).then((data) => {
-            if (data[1] == true){
+            if (data[1]){
                 console.log("Uhm... LJ?")
             }
             else {
@@ -93,7 +93,7 @@ class PlinthContainer extends React.Component {
             // Stuff is valid and good to go
             addNewPlinth(this.state.data.ID, this.state.data.URL).then(
                 (data) => {
-                    if (data[1] == false) { 
+                    if (!data[1]) { 
                         this.getAllPlinthDetails()
                         console.log("Plinth Added")
                     }

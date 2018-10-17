@@ -5,7 +5,7 @@ import MyMenu from '../MyMenu';
 import {Link} from 'react-router-dom';
 import '../../App.css';
 import '../../server';
-import { updateConfig, getConfigList, getConfig, addConfig, deleteConfig} from '../../server';
+import { getConfigList, getConfig, addConfig, deleteConfig} from '../../server';
 
 class Configurations extends React.Component{ 
     constructor(props){

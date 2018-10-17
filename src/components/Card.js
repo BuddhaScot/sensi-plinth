@@ -66,6 +66,7 @@ class Card extends Component {
             color: '#fff',
             textAlign: 'center'
         }
+        /*
         const textStyleP = {
             color: "#fff",
             alignItems: 'right',
@@ -73,6 +74,7 @@ class Card extends Component {
             float: 'center',
             textAlign: 'center'
         }
+        */
         
         return (
             <div className = "button" style = { buttonStyle } onClick={()=>{this.setState({clicked: !this.state.clicked});}}>
@@ -85,10 +87,10 @@ class Card extends Component {
                         <Modal.Content image alignitems='center'>
                             <SwatchesPicker onChangeComplete={this.handleChange} style={{alignItems: 'center', marginLeft:'auto', marginRight: 'auto', width:'80%'}}/>
                             <ModalDescription>
-                                <Header>Plinth Details</Header>
-                                <div style={{width:""}}><Button primary style={{justifyContent:"center", marginLeft:"30%", marginRight:"30%"}}>Edit Plinth Details</Button></div>
+                                <Header style={{marginLeft: "16px"}}>Plinth Details</Header>
+                                <div style={{width:""}}><Button primary style={{marginLeft:"16px"}}>Edit Plinth Details</Button></div>
                                 <p></p>
-                                <div><Button primary alignItems="center" style={{justifyContent:'center',marginLeft:"30%", marginRight:"30%"}} onClick={() => {this.props.onDelete(this.props.cardTitle)}}>Delete</Button></div>
+                                <div><Button alignItems="center" style={{marginLeft:"16px", backgroundColor: "#f36b6b", color: "white"}} onClick={() => {this.props.onDelete(this.props.cardTitle)}}>Delete</Button></div>
                             </ModalDescription>
                         </Modal.Content>
                     </Modal> 
