@@ -8,6 +8,9 @@ export default class MyMenu extends Component {
     this.state = {
       activeItem: this.props.activeItem
     }
+
+    console.log(this.state.activeItem)
+    console.log(this.state.activeItem !== 'configurations')
   }
 
   handleItemClick = (e, name) => {
@@ -20,7 +23,7 @@ export default class MyMenu extends Component {
       <Menu tabular>
         <Menu.Item name='home' active={activeItem === 'home'} style={activeItem !== 'home' ? {color: '#fff'} : {color: '#000'}} onClick={this.handleItemClick}><Link to="/">Home</Link></Menu.Item>
         <Menu.Item name='favourites' active={activeItem === 'favourites'} style={activeItem !== 'favourites' ? {color: '#fff'} : {color: '#000'}} onClick={this.handleItemClick}><Link to="/Favourite">Favourite</Link></Menu.Item>
-        <Menu.Item name='configurations' active={activeItem === 'configurations'} style={activeItem !== 'configurations' ? {color: '#fff'} : {color: '#000'}} onClick={this.handleItemClick}><Link to="/Configurations">Configurations</Link></Menu.Item>
+        <Menu.Item name='configurations' active={activeItem === 'configurations'} style={activeItem !== 'configurations' ? {color: '#000'} : {color: '#f45'}} onClick={this.handleItemClick}><Link to="/Configurations">Configurations</Link></Menu.Item>
       </Menu>
     )
   }

@@ -32,6 +32,7 @@ export default class Home extends Component {
           plinths: test,
         }
       )
+      console.log(this.state.plinths)
       // Set plinth data from 'data' variable which was returned from the server
     }).catch((err) => {
       console.log("An error occured: " + err.toString());
@@ -42,15 +43,27 @@ export default class Home extends Component {
 
     return (
       <Segment inverted style={{minHeight: "100%", marginTop:"0px", marginBottom:"0px"}}>
-        <h1>{title_text}</h1>
-        <MyMenu activeItem={"home"}/>
-      <ModalExample plinthName={ this.state.selected }/>
-      <Button primary><Link style={{color: "#fff"}}to="/Favourite"> Favourite </Link></Button>
-      <Button primary><Link style={{color: "#fff"}}to="/Configurations"> Configurations </Link></Button>
-      <PlinthContainer key={0} style={test} plinthDetails ={this.state.plinths}/>
-    </Segment>
+          <div style={{width: "100%", height: "8%"}}>
+              <img src={require("../../lines.png")} style={{float:"right", width: "4%", height: "7%"}}/>
+              <h1 style={{float:"right", paddingLeft:"0.5%"}}>ensiLab</h1>
+              <p></p>
+          </div>
+          <div style={{width: "100%", paddingTop: "10%"}}>
+              <MyMenu activeItem={"home"} style/>
+              <PlinthContainer key={0} style={test} plinthDetails ={this.state.plinths}/>
+          </div>
+      </Segment>
 )}
 }
+
+//        <h1>{title_text}</h1>
+
+
+/*
+<ModalExample plinthName={ this.state.selected }/>
+      <Button primary><Link style={{color: "#fff"}}to="/Favourite"> Favourite </Link></Button>
+      <Button primary><Link style={{color: "#fff"}}to="/Configurations"> Configurations </Link></Button>
+      */
 /*<Menu.Menu position='right'>
             <Menu.Item>
               <Input icon='search' placeholder='Search...' />

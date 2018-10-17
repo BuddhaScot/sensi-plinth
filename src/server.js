@@ -1,4 +1,4 @@
-const BASE_URL = " http://624d340c.ngrok.io";
+const BASE_URL = "http://d6e832f3.ngrok.io";
 
 export class RGBColour {
     constructor(r, g, b) {
@@ -19,6 +19,15 @@ export class HexColour {
     convertToRGB() {
         return RGBColour(parseInt(this.hex.substring(0, 2), 16), parseInt(this.hex.substring(2, 4), 16), parseInt(this.hex.substring(4, 6), 16));
     }
+}
+
+export function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+export function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
 export function sendServerRequest(requestString) {
@@ -88,5 +97,15 @@ export function addConfig(configName) {
 
 export function setStatus(){
     let requestString = "/set_status.php";
+    return sendServerRequest(requestString);
+}
+
+export function deleteConfig(configName) {
+    let requestString = "/delete_config.php?name=" + configName;
+    return sendServerRequest(requestString);
+}
+
+export function deletePlinth(plinth_id) {
+    let requestString = "/delete_plinth.php?plinth_id=" + plinth_id;
     return sendServerRequest(requestString);
 }

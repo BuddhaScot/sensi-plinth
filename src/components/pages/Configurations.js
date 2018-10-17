@@ -5,7 +5,7 @@ import MyMenu from '../MyMenu';
 import {Link} from 'react-router-dom';
 import '../../App.css';
 import '../../server';
-import { updateConfig, getConfigList, getConfig, addConfig } from '../../server';
+import { updateConfig, getConfigList, getConfig, addConfig, deleteConfig} from '../../server';
 
 class Configurations extends React.Component{ 
     constructor(props){
@@ -109,6 +109,24 @@ class Configurations extends React.Component{
             console.log(error);
         })
     }
+
+    handleDelete(ID) {
+        console.log("DELETING: ", ID);
+
+        deleteConfig(ID).then((data) => {
+            if (data[1] === true){
+                console.log("Errors 4 dayz")
+            }
+            else {
+                console.log(ID, " Deleted")
+                this.getAllConfigurations();
+            }
+
+        }).catch((error) => {
+            console.log("Uh Oh: ", error.toString())
+        })
+
+    }
     handleUse(ID) {
         console.log("item: ", ID);
         // get the config and then iterate over the plinths to change them all
@@ -120,6 +138,8 @@ class Configurations extends React.Component{
             <Segment inverted style={{height:'100%'}}>
                 <List divided inverted relaxed >
                 <h1 style={{float: 'center', textAlign:'center'}}>Configurations</h1>
+                <MyMenu activeItem={"configurations"}/> 
+
                 <Modal trigger={<Button primary style={{float:'right', borderRadius:'20% 20%'}} close={this.state.closed}>Add Config</Button>}>
             <Modal.Header>Add a Configuration</Modal.Header>
             <Modal.Content image>
@@ -143,19 +163,24 @@ class Configurations extends React.Component{
                 </Modal.Description>
             </Modal.Content>
         </Modal>
-        <MyMenu activeItem={"configurations"}/> 
-                <List divided verticalAlign='middle'/>
-                {
-                    this.state.configurations.map((item, index) => {
-                        return <List.Item style={{marginTop:"10px"}}>
-                        <List.Content floated='right'>
-                            <Button primary floated='right' onClick={() => {this.handleUse(item)}}>Use</Button>
-                            <Button primary floated='right'onClick={() => { this.handleEdit(item)}}><Link to={{pathname: '/Favourite', data: item}}>Edit</Link></Button>
-                        </List.Content>
-                        <List.Content style={{color: "#fff"}}>{item}</List.Content></List.Item>;})
-                }
-                </List>
-            </Segment>
+
+        <List divided verticalAlign='middle'/>
+            {
+                this.state.configurations.map((item, index) => {
+                    return <List.Item style={{marginTop:"10px"}}>
+                    <List.Content floated='right'>
+                        <Button primary floated='right' onClick={() => {this.handleUse(item)}}>Use</Button>
+                        <Link to={{pathname: '/Favourite', data: item}}><Button primary floated='right'onClick={() => { this.handleEdit(item)}}>Edit</Button></Link>
+                        {
+                            item !== "current" ? 
+                            <Button primary floated='right'onClick={() => { this.handleDelete(item)}}>Delete</Button>
+                            : null
+                        }
+                    </List.Content>
+                    <List.Content style={{color: "#fff"}}>{item}</List.Content></List.Item>;})
+            }
+        </List>
+        </Segment>
         )
     }
 }

@@ -21,7 +21,7 @@ class Card extends Component {
 
     setPlinthColour(colour) {
         const rgbColour = this.convertHexToRGB(colour);
-        const rgbVal = {
+        const rgbwVal = {
             r: rgbColour[0],
             g: rgbColour[1],
             b: rgbColour[2],
@@ -29,14 +29,12 @@ class Card extends Component {
         }
         const plinth_id = this.props.cardTitle;
         console.log("Plinth: ", plinth_id, " updating Colour")
-        changeLight(plinth_id, rgbVal).then((data) => {
+        console.log(plinth_id, rgbwVal)
+        changeLight(plinth_id, rgbwVal).then((data) => {
             console.log(data);
         }).catch((error) => {
             console.log("uh oh: ", error);
         })
-        //console.log(rgbColour);
-        //fetch(url + rgbColour[0].toString() + '&g=' + rgbColour[1].toString() + '&b=' + rgbColour[2].toString()).catch(console.log("oops"));
-
     }
 
     handleChange = (colorChange, event) => {
@@ -79,7 +77,6 @@ class Card extends Component {
         return (
             <div className = "button" style = { buttonStyle } onClick={()=>{this.setState({clicked: !this.state.clicked});}}>
                 <h1 style = { textStyle }>{"Plinth " + this.props.cardTitle}</h1>
-                <p style= { textStyleP }>{this.props.cardContent}</p>
                 {
                 this.state.clicked?
                 //CHANGE THIS OPEN METHOD IF YOU WANT TO MAKE IT STOP BEING SHIT
@@ -101,6 +98,7 @@ class Card extends Component {
         )
     }
 }
+//                <p style= { textStyleP }>{this.props.cardContent}</p>
 
 //<div style={{justifyContent:'center', height:'100%', width:'10%',marginLeft:'auto', marginRight:'auto', fill: "#fff"}}>
 export default Card;
