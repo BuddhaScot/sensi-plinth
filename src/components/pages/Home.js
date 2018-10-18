@@ -45,11 +45,10 @@ export default class Home extends Component {
       <Segment inverted style={{minHeight: "100%", marginTop:"0px", marginBottom:"0px"}}>
           <div style={{width: "100%", height: "8%"}}>
             <h1 style={{paddingLeft:"0.5%"}}>
-              <img src={require("../../lines.png")} alt="S" style={{width: "4%", height: "7%"}}/>
-              ensilab Plinths
+              <img src={require("../../s.png")} alt="S" style={{height: "100%", maxHeight: "4rem"}}/>
             </h1>
           </div>
-          <div style={{width: "100%", paddingTop: "4%"}}>
+          <div style={{width: "100%", paddingTop: "2rem"}}>
               <MyMenu activeItem={"home"} style/>
               <PlinthContainer key={0} style={test} plinthDetails ={this.state.plinths}/>
           </div>
