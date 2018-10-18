@@ -20,7 +20,7 @@ function handleColourPick(colour) {
 
 const ModalExample = (plinthName) => (
   //<Modal trigger={<Card cardTitle = {"Testing"} cardContent={"rih"} key={101}/>} style={{justifyItems: 'right'}}>
- <Modal trigger={<Button>Show Colour Picker</Button>} style={{justifyItems: ''}}>
+ <Modal size="tiny" trigger={<Button>Show Colour Picker</Button>} style={{justifyItems: ''}}>
     <Modal.Header>COLORSSSSS</Modal.Header>
     <Modal.Content>
     <div style={{textAlign: 'right', display: 'block', position:'relative'}}><SwatchesPicker onChangeComplete={handleColourPick}/></div>

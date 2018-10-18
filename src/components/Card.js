@@ -66,6 +66,7 @@ class Card extends Component {
             color: '#fff',
             textAlign: 'center'
         }
+        const text = this.props.cardTitle != "ALL" ? "Plinth "+ this.props.cardTitle : this.props.cardTitle
         /*
         const textStyleP = {
             color: "#fff",
@@ -78,11 +79,11 @@ class Card extends Component {
         
         return (
             <div className = "button" style = { buttonStyle } onClick={()=>{this.setState({clicked: !this.state.clicked});}}>
-                <h1 style = { textStyle }>{"Plinth " + this.props.cardTitle}</h1>
+                <h1 style = { textStyle }>{text}</h1>
                 {
                 this.state.clicked?
                 //CHANGE THIS OPEN METHOD IF YOU WANT TO MAKE IT STOP BEING SHIT
-                    <Modal size={"large"} open={this.state.clicked} style={{alignitems:'center'}}>
+                    <Modal size={"tiny"} open={this.state.clicked} style={{alignitems:'center'}}>
                         <Modal.Header>Choose a color, any color.</Modal.Header>
                         <Modal.Content image alignitems='center'>
                             <SwatchesPicker onChangeComplete={this.handleChange} style={{alignItems: 'center', marginLeft:'auto', marginRight: 'auto', width:'80%'}}/>
