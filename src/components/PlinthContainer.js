@@ -4,13 +4,14 @@ import Card from './Card';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { SwatchesPicker } from 'react-color';
 import ErrorMessage  from './ErrorMessage';
-import {getPlinthData, addNewPlinth, deletePlinth} from '../server';
+import {getPlinthData, addNewPlinth, deletePlinth, rgbToHex, changeLight, HexColour} from '../server';
 
 class PlinthContainer extends React.Component {
     constructor(props) { 
         super(props);
         this.state = {
-            colors: "#003366",
+            useDefault: false,
+            colors: this.props.colour,
             listOfPlinths: [],
             //listOfPlinths: [{ID: "1", Item:"These"}, {ID:"2",Item:"are"},{ID:"3",Item:"Different"},{ID:"4",Item:"plinths"}, {ID: "5",Item:"!!!!"}, {ID:"6",Item:"maybe"}, {ID:"7",Item:"some"}, {ID:"8",Item:"more"},{ID:"9",Item:"just"}],
             data: {
@@ -40,8 +41,31 @@ class PlinthContainer extends React.Component {
     }
 
     changeAllPlinth = (color, event) => {
-        console.log(color)
-        this.setState({colors: color.toString(), data: this.state.data})
+        const changer = new HexColour(color);
+        let rgbVals =  changer.convertToRGB();
+
+        console.log("THIS WAS CLICKED FOR THE ALL PLINTH BUTTON")
+
+        this.props.onChange(color)
+        
+        changeLight(-1, rgbVals).then((data) => {
+            if (data[1] === true){
+                console.log("This failed miserably")
+            }
+            else { 
+                console.log("All plinths updated")
+                this.getAllPlinthDetails()
+            }
+        }).catch((error) => {
+            console.log("Help pls. ", error)
+        })
+        //this.setState({
+        //    colors: color.toString(),
+        //    data: this.state.data,
+        //    useDefault: true,
+        //    listOfPlinths: this.state.listOfPlinths,
+        //})
+        console.log(this.state.colors)
         }
 
     onChange = (e) =>{
@@ -187,8 +211,8 @@ class PlinthContainer extends React.Component {
             <span style={MenuItem}><Card cardTitle = {"ALL"} cardContent={"rih"} key={101} color={this.state.colors} changeAllPlinth ={this.changeAllPlinth.bind(this)}/></span>
             {
             listOfItems.map((item, index) => {
-                console.log(item);
-              return <span style={MenuItem}><Card cardTitle={(item.plinth_id)} cardContent={item.Item} key={index} color={this.state.colors} onDelete={this.onDelete}/></span>;})
+                console.log("HERE: ",item.r);
+              return <span style={MenuItem}><Card cardTitle={(item.plinth_id)} cardContent={item.Item} key={index} color={this.state.useDefault ? this.state.colors.color : rgbToHex(item.r, item.g, item.b)} onDelete={this.onDelete}/></span>;})
               //return <Button style={MenuItem}><Card cardTitle={"Plinth " + (index+1)} cardContent={item} key={index}/></Button>;})
             }
         </div>

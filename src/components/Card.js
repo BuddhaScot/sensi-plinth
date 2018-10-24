@@ -27,14 +27,16 @@ class Card extends Component {
             b: rgbColour[2],
             w: 0,
         }
-        const plinth_id = this.props.cardTitle;
-        console.log("Plinth: ", plinth_id, " updating Colour")
-        console.log(plinth_id, rgbwVal)
-        changeLight(plinth_id, rgbwVal).then((data) => {
-            console.log(data);
-        }).catch((error) => {
-            console.log("uh oh: ", error);
-        })
+        if (this.props.cardTitle != "ALL") {
+            const plinth_id = this.props.cardTitle;
+            console.log("Plinth: ", plinth_id, " updating Colour")
+            console.log(plinth_id, rgbwVal)
+            changeLight(plinth_id, rgbwVal).then((data) => {
+                console.log(data);
+            }).catch((error) => {
+                console.log("uh oh: ", error);
+            })
+        }
     }
 
     handleChange = (colorChange, event) => {

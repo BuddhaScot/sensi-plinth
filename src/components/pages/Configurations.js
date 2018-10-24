@@ -5,7 +5,7 @@ import MyMenu from '../MyMenu';
 import {Link} from 'react-router-dom';
 import '../../App.css';
 import '../../server';
-import { getConfigList, getConfig, addConfig, deleteConfig} from '../../server';
+import { getConfigList, getConfig, addConfig, deleteConfig, changeLight} from '../../server';
 
 class Configurations extends React.Component{ 
     constructor(props){
@@ -96,6 +96,7 @@ class Configurations extends React.Component{
     handleEdit(ID) {
         console.log("item: ", ID)
         // get that config and then pass it into favourites
+
         getConfig(ID).then((data)=>{
             console.log(data);
             if(data === "Failed"){
@@ -128,8 +129,34 @@ class Configurations extends React.Component{
 
     }
     handleUse(ID) {
-        console.log("item: ", ID);
-        // get the config and then iterate over the plinths to change them all
+        const thisConfigData = getConfig(ID).then((data)=>{
+            if(data === "Failed"){
+                console.log("Get Config Failed")
+            }
+            else { 
+                console.log("Get Config Success: ", data) 
+                console.log(data.length)
+                for (let i = 0; i < data.length; i++){
+                    console.log(data[0][i])
+                    this.setPlinthColour({r: data[0][i].r, g:data[0][i].g, b: data[0][i].b, w: 0}, data[0][i].plinth_id)
+                }
+            }
+        }).catch((error) => {
+            console.log(error);
+        })
+        
+    }
+
+    setPlinthColour(rgbw, ID) {
+        const plinth_id = ID;
+
+        console.log("Plinth: ", plinth_id, " updating Colour")
+        console.log(plinth_id, rgbw)
+        changeLight(plinth_id, rgbw).then((data) => {
+            console.log(data);
+        }).catch((error) => {
+            console.log("uh oh: ", error);
+        })
     }
 
     render() { 

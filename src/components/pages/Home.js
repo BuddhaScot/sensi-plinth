@@ -21,7 +21,8 @@ export default class Home extends Component {
     super();
     this.state = { 
       activeItem: 'home',    
-      plinths: []  
+      plinths: [],
+      colour: {color: "#003366", should: false}
      };
     
     getPlinthData(true,-1).then((data) => {
@@ -38,6 +39,12 @@ export default class Home extends Component {
       console.log("An error occured: " + err.toString());
     })
   }
+    
+  changeThemAll = (colour) => {
+    this.setState({
+      colour: {color: colour, should: true}
+    })
+  }
  
   render() {
 
@@ -50,7 +57,7 @@ export default class Home extends Component {
           </div>
           <div style={{width: "100%", paddingTop: "2rem"}}>
               <MyMenu activeItem={"home"} style/>
-              <PlinthContainer key={0} style={test} plinthDetails ={this.state.plinths}/>
+              <PlinthContainer key={0} style={test} plinthDetails ={this.state.plinths} colour={this.state.colour} onChange={this.changeThemAll.bind(this)}/>
           </div>
       </Segment>
 )}

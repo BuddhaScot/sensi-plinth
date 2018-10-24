@@ -1,10 +1,11 @@
-const BASE_URL = "http://87341e6c.ngrok.io";
+const BASE_URL = "http://3de1a04d.ngrok.io";
 
 export class RGBColour {
     constructor(r, g, b) {
         this.r = r;
         this.g = g;
         this.b = b;
+        this.w = 0;
     }
 }
 
@@ -17,7 +18,7 @@ export class HexColour {
         }
     }
     convertToRGB() {
-        return RGBColour(parseInt(this.hex.substring(0, 2), 16), parseInt(this.hex.substring(2, 4), 16), parseInt(this.hex.substring(4, 6), 16));
+        return new RGBColour(parseInt(this.hex.substring(0, 2), 16), parseInt(this.hex.substring(2, 4), 16), parseInt(this.hex.substring(4, 6), 16));
     }
 }
 
